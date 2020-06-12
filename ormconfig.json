@@ -1,0 +1,27 @@
+{
+  "type": "postgres",
+  "host": "127.0.0.1",
+  "port": 5432,
+  "username": "coucoumamie",
+  "password": "coucoumamie",
+  "database": "coucou_mamie",
+  "entities": [
+    "./src/user/user.entity.ts",
+    "./src/article/article.entity.ts",
+    "./src/article/comment.entity.ts",
+    "./src/profile/profile.entity.ts",
+    "./src/tag/tag.entity.ts"
+  ],
+  "migrationsTableName": "migration",
+  "synchronize": false,
+  "migrationsRun": true,
+  "logging": "error",
+  "logger": "simple-console",
+  "migrations": [
+    "./src/migration/*.ts"
+  ],
+  "cli": {
+    "migrationsDir": "src/migration"
+  },
+  "ssl": false
+}
