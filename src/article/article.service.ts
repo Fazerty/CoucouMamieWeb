@@ -7,8 +7,9 @@ import { UserEntity } from '../user/user.entity';
 import { ProfileEntity } from '../profile/profile.entity';
 import { CreateArticleDto } from './dto';
 
-import {ArticleRO, ArticlesRO, CommentsRO} from './article.interface';
+import {ArticleRO, ArticlesRO, CommentsRO} from './article.class';
 import slug from 'slug';
+import { QueryDto } from './dto/query.dto';
 
 @Injectable()
 export class ArticleService {
@@ -23,12 +24,12 @@ export class ArticleService {
     private readonly profileRepository: Repository<ProfileEntity>
   ) {}
 
-  async findAll(query: { tag: any; author: any; favorited: any; limit: number; offset: number; }): Promise<ArticlesRO> {
+  async findAll(query: QueryDto): Promise<ArticlesRO> {
 
     const qb = getRepository(ArticleEntity)
       .createQueryBuilder('article')
       .leftJoinAndSelect('article.author', 'author');
-    
+
     qb.where("1 = 1");
 
     if ('tag' in query) {

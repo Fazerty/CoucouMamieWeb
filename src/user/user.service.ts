@@ -4,7 +4,7 @@ import { Repository, getRepository, DeleteResult } from 'typeorm';
 import { UserEntity } from './user.entity';
 import {CreateUserDto, LoginUserDto, UpdateUserDto} from './dto';
 import * as jwt from 'jsonwebtoken';
-import { UserRO } from './user.interface';
+import { UserRO } from './user.class';
 import { validate } from 'class-validator';
 import { HttpException } from '@nestjs/common/exceptions/http.exception';
 import { HttpStatus } from '@nestjs/common';

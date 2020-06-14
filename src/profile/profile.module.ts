@@ -6,10 +6,11 @@ import { UserModule } from '../user/user.module';
 import {UserEntity} from "../user/user.entity";
 import {ProfileEntity} from "./profile.entity";
 import {AuthMiddleware} from "../user/auth.middleware";
+import { ProfileResolver } from './profile.resolver';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserEntity, ProfileEntity]), UserModule],
-  providers: [ProfileService],
+  providers: [ProfileService, ProfileResolver],
   controllers: [
     ProfileController
   ],

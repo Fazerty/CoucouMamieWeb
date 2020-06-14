@@ -4,10 +4,11 @@ import { UserModule } from '../user/user.module';
 import { TagService } from './tag.service';
 import { TagEntity } from './tag.entity';
 import { TagController } from './tag.controller';
+import { TagResolver } from './tag.resolver';
 
 @Module({
   imports: [TypeOrmModule.forFeature([TagEntity]), UserModule],
-  providers: [TagService],
+  providers: [TagService, TagResolver],
   controllers: [
     TagController
   ],

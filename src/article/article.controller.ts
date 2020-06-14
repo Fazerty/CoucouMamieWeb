@@ -1,8 +1,8 @@
 import { Get, Post, Body, Put, Delete, Query, Param, Controller } from '@nestjs/common';
 import { ArticleService } from './article.service';
 import { CreateArticleDto, CreateCommentDto } from './dto';
-import { ArticlesRO, ArticleRO } from './article.interface';
-import { CommentsRO } from './article.interface';
+import { ArticlesRO, ArticleRO } from './article.class';
+import { CommentsRO } from './article.class';
 import { User } from '../user/user.decorator';
 
 import {
@@ -12,6 +12,7 @@ import {
 } from '@nestjs/swagger';
 import { ArticleEntity } from './article.entity';
 import { DeleteResult } from 'typeorm';
+import { QueryDto } from './dto/query.dto';
 
 @ApiBearerAuth()
 @ApiTags('articles')
@@ -23,7 +24,7 @@ export class ArticleController {
   @ApiOperation({ summary: 'Get all articles' })
   @ApiResponse({ status: 200, description: 'Return all articles.' })
   @Get()
-  async findAll(@Query() query: { tag: any; author: any; favorited: any; limit: number; offset: number; }): Promise<ArticlesRO> {
+  async findAll(@Query() query: QueryDto): Promise<ArticlesRO> {
     return await this.articleService.findAll(query);
   }
 

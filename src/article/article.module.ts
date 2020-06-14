@@ -8,10 +8,11 @@ import { ProfileEntity } from '../profile/profile.entity';
 import { ArticleService } from './article.service';
 import { AuthMiddleware } from '../user/auth.middleware';
 import { UserModule } from '../user/user.module';
+import { ArticleResolver } from './article.resolver';
 
 @Module({
   imports: [TypeOrmModule.forFeature([ArticleEntity, CommentEntity, UserEntity, ProfileEntity]), UserModule],
-  providers: [ArticleService],
+  providers: [ArticleService, ArticleResolver],
   controllers: [
     ArticleController
   ]
