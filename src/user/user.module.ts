@@ -1,24 +1,18 @@
-import {MiddlewareConsumer, Module, NestModule, RequestMethod} from '@nestjs/common';
-import { UserController } from './user.controller';
+import {MiddlewareConsumer, Module, NestModule} from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from './user.entity';
 import { UserService } from './user.service';
-import { AuthMiddleware } from './auth.middleware';
 import { UserResolver } from './user.resolver';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserEntity])],
   providers: [UserService, UserResolver],
-  controllers: [
-    UserController
-  ],
+  controllers: [],
   exports: [UserService]
 })
 export class UserModule implements NestModule {
-
-  public configure(consumer: MiddlewareConsumer): void {
-    consumer
-      .apply(AuthMiddleware)
-      .forRoutes({path: 'user', method: RequestMethod.GET}, {path: 'user', method: RequestMethod.PUT});
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public configure(_consumer: MiddlewareConsumer): void {
+    //
   }
 }
